@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple page viewer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+    <div id="content">
+        <div id="page-container">
+            <img id="page" src="tu-imagen.jpg" onclick="imgClick()" height="1018" width="1440" alt="page" />
+        </div>
+        
+        <div class="button-container">
+            <button onclick="mv(-1)">Prev</button>
+            <button onclick="mv(1)">Next</button>
+            <button onclick="showHide('audios')">Audios</button>
+            <button onclick="showHide('languages')">Languages</button>
+            <button onclick="showHide('toc')">Table of contents</button>
+            <button onclick="showHide('qr-code-container')">QR Code</button>
+            <button onclick="showHide('keyboard-shortcuts')">Keyboard shortcuts</button>
+            <button id="toggle-enableaudio" onclick="toggleUrlProp('enableaudio'); updatePage()">Toggle enableaudio</button>
+
+        </div>
+        <div id="audios" class="hide">
+            <h3>Audios</h3>
+            <table>
+                <tbody id="audios-tbody"></tbody>
+            </table>
+        </div>
+        <div id="languages" class="hide">
+            <h3>Languages</h3>
+            <div class="button-group">
+                <button onclick="softNavigate(event, {language:'espanol'})">Español</button>
+                <button onclick="softNavigate(event, {language:'ingles'})">Inglés</button>
+                <button onclick="softNavigate(event, {language:'frances'})">Francés</button>
+                <button onclick="softNavigate(event, {language:'italiano'})">Italiano</button>
+                <button onclick="softNavigate(event, {language:'aleman'})">Alemán</button>
+                <button onclick="softNavigate(event, {language:'portugues'})">Portugués</button>
+                <button onclick="softNavigate(event, {language:'ruso'})">Ruso</button>
+                <button onclick="softNavigate(event, {language:'chino',level:'basico',page:'1'})">Chino</button>
+                <button onclick="softNavigate(event, {language:'japones',level:'basico',page:'1'})">Japonés</button>
+            </div>
+        </div>
+        <div id="toc" class="hide">
+            <h3>Table of Contents</h3>
+            <div class="toc-container">
+                <div class="toc-book">
+                    <h4>Book Básico</h4>
+                    <ul class="toc-list" id="toc-basico"></ul>
+                </div>
+                <div class="toc-book">
+                    <h4>Book Intermedio</h4>
+                    <ul class="toc-list" id="toc-intermedio"></ul>
+                </div>
+                <div class="toc-book">
+                    <h4>Book Avanzado</h4>
+                    <ul class="toc-list" id="toc-avanzado"></ul>
+                </div>
+                <div class="toc-book">
+                    <h4>Book Superior</h4>
+                    <ul class="toc-list" id="toc-superior"></ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="qr-code-container" class="hide">
+            <h3>QR Code</h3>
+            <div id="qr-code"></div>
+        </div>
+        <div id="keyboard-shortcuts" class="hide">
+            <h3>Keyboard Shortcuts:</h3>
+            <ul>
+                <li><strong>f</strong>: Toggle fullscreen mode.</li>
+                <li><strong>h</strong>: Toggle highlighting mode.</li>
+                <li><strong>m</strong>: Move to the next page.</li>
+                <li><strong>n</strong>: Move to the previous page.</li>
+                <li><strong>1</strong>, <strong>2</strong>, <strong>3</strong>, <strong>4</strong>, <strong>5</strong>: Select a specific audio.</li>
+                <li><strong>spacebar</strong>: Toggle play/pause for the focused audio.</li>
+                <li><strong>, (comma)</strong>: Rewind the playback of the focused audio.</li>
+            </ul>
+        </div>        
+        <hr />
+    </div>
+</body>
+</html>
